@@ -86,4 +86,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.com.git
   branch: master
-  message: 正文字体和代码样式完成
+  message: 把iTeye的博客迁移过来

@@ -1,5 +1,5 @@
 title: Java Websocket实例
-date: 2015-01-09 23:33:56
+date: 2015-02-09 23:33:56
 category: [Java]
 tags: [websocket]
 ---
@@ -20,6 +20,15 @@ tags: [websocket]
 
 ###客户端
 实现了websocket的浏览器
+
+|  |  |
+| :-------- | :--------|
+| Chrome | Supported in version 4+ |
+| Firefox | Supported in version 4+ |
+| Internet Explorer | Supported in version 10+ |
+| Opera |Supported in version 10+ |
+| Safari | Supported in version 5+ |
+
 
 ###服务端
 
@@ -395,6 +404,7 @@ public class MyClientApp {
 
 chrome安装一个websocket客户端调试 
 
+![websocket-01](/images/websocket-01.png)
 
 最后
 
