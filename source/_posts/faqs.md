@@ -1,13 +1,15 @@
 title: "备忘"
+date: 2015-01-01 00:00:00
 category: [其他]
+tags: 
 ---
 记录工作中遇到的一些小问题及解决办法，以防忘记后重头再找答案。
 
-####格式：
+##格式：
 问：Win7下 Eclipse中按"Alt+Ctrl+Down或Alt+Ctrl+Up"时，结果屏幕倒了怎么办？  
 答：是不是和其它应用的快捷键冲突了？比如Intel显卡，则可选择“图形属性”>“选项和支持”，将对应快捷键换掉。参考：http://www.2cto.com/os/201201/116412.html
 
-####或作为url收藏记录
+##或作为url收藏记录
 - Markdown语法：<http://wowubuntu.com/markdown/basic.html>  
 - Oracle现在真是恶心，下载个Java SDK还非得让登陆不可。只好再找下载地址了: <http://ghaffarian.net/downloads/>  
 - GIT文章收藏:  
@@ -17,7 +19,7 @@ category: [其他]
 - 在线Android等源码：<http://www.grepcode.com/>, <http://androidxref.com/>  
 - Twitter University: <http://www.bluemobi.cn/>  
 
-####本项目使用了
+##本项目使用了
 
 - CNZZ的网站统计服务，官网：<http://cnzz.com/>  
 - 友言的网友评论服务，官网：<http://www.uyan.cc/>  

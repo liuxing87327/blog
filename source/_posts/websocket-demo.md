@@ -3,29 +3,31 @@ date: 2015-01-09 23:33:56
 category: [Java]
 tags: [websocket]
 ---
-
-
 记录下自己在用的websocket
 
-####介绍
-    现在很多网站为了实现即时通讯，所用的技术都是轮询(polling)。轮询是在特定的的时间间隔（如每1秒），
-    由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。
-    这种传统的HTTP request 的模式带来很明显的缺点 – 浏览器需要不断的向服务器发出请求，
-    然而HTTP request 的header是非常长的，里面包含的数据可能只是一个很小的值，这样会占用很多的带宽。
+##介绍
+
+现在很多网站为了实现即时通讯，所用的技术都是轮询(polling)。轮询是在特定的的时间间隔（如每1秒），
+由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。
+这种传统的HTTP request 的模式带来很明显的缺点 – 浏览器需要不断的向服务器发出请求，
+然而HTTP request 的header是非常长的，里面包含的数据可能只是一个很小的值，这样会占用很多的带宽。
+
+而最比较新的技术去做轮询的效果是Comet – 用了AJAX。但这种技术虽然可达到全双工通信，但依然需要发出请求。
+
+在 WebSocket API，浏览器和服务器只需要要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。
     
-    而最比较新的技术去做轮询的效果是Comet – 用了AJAX。但这种技术虽然可达到全双工通信，但依然需要发出请求。
-    
-    在 WebSocket API，浏览器和服务器只需要要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。
-    
-####运行环境：
-#####客户端
+##运行环境：
+
+###客户端
 实现了websocket的浏览器
 
-#####服务端
+###服务端
+
+####依赖
 Tomcat 7.0.47以上 + J2EE7
 
 ```xml
-<dependency>  
+<dependency>
     <groupId>org.apache.tomcat</groupId>  
     <artifactId>tomcat-websocket-api</artifactId>  
     <version>7.0.47</version>  
@@ -37,16 +39,15 @@ Tomcat 7.0.47以上 + J2EE7
     <artifactId>javaee-api</artifactId>  
     <version>7.0</version>  
     <scope>provided</scope>  
-</dependency>  
-```  
+</dependency>
+
+```
 
 注意：早前业界没有统一的标准，各服务器都有各自的实现，现在J2EE7的JSR356已经定义了统一的标准，请尽量使用支持最新通用标准的服务器。
 
 详见：
-
-<http://www.oracle.com/technetwork/articles/java/jsr356-1937161.html>
-
-<http://jinnianshilongnian.iteye.com/blog/1909962>
+http://www.oracle.com/technetwork/articles/java/jsr356-1937161.html
+http://jinnianshilongnian.iteye.com/blog/1909962
  
 我是用的Tomcat 7.0.57 + Java7
 必须是Tomcat 7.0.47以上
@@ -57,13 +58,15 @@ ps：最早我们是用的Tomcat 7自带的实现，后来要升级Tomcat 8，�
 主流的java web服务器都有支持JSR365标准的版本了，请自行Google。 
 
 
-`用nginx做反向代理的需要注意啦，socket请求需要做特殊配置的，切记！`
+用nginx做反向代理的需要注意啦，socket请求需要做特殊配置的，切记！
 
 
 Tomcat的处理方式建议修改为NIO的方式，同时修改连接数到合适的参数，请自行Google！
 
 服务端不需要在web.xml中做额外的配置，Tomcat启动后就可以直接连接了。
 
+
+####实现
 ```java
 import com.dooioo.websocket.utils.SessionUtils;
 import org.apache.commons.logging.Log;
@@ -144,7 +147,7 @@ public class WebsocketEndPoint {
 
 }
     
- ```
+```
  
 工具类用来存储唯一key和连接
 
@@ -205,6 +208,7 @@ public class SessionUtils {
 在其他业务方法中调用
 
 ```java
+
 /**
  * 将数据传回客户端
  * 异步的方式
@@ -218,7 +222,6 @@ public void broadcast(String relationId, int userCode, String message) {
     } else {
         throw new NullPointerException(TelSocketSessionUtils.getKey(relationId, userCode) + " Connection does not exist");
     }
-
 }
 
 ```
@@ -291,11 +294,13 @@ Java实现一个websocket的客户端
 依赖：
 
 ```xml
+
 <dependency>
     <groupId>org.java-websocket</groupId>
     <artifactId>Java-WebSocket</artifactId>
     <version>1.3.0</version>
 </dependency>
+
 ```
 
 代码：

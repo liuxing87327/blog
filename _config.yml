@@ -3,16 +3,21 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
+#站点名，站点左上角
 title: liuxing's blog
-subtitle: 青春须早为,岂能长少年!
+#副标题，站点左上角
+subtitle: 青春须早为,岂能长少年！
+#给搜索引擎看的，对站点的描述，可以自定义
 description: 小兴的技术博客
+#在站点左下角可以看到
 author: liuxing
-language: zh
+#中国人嘛，用中文
+language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://liuxing87327.github.com
+url: http://liuxing87327.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -27,7 +32,7 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
-# Writing
+# Writing 文章布局、写作格式的定义，不修改
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
@@ -37,11 +42,13 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
+
+#代码高亮的开关需要在主题里面配置
 highlight:
   enable: true
   line_number: true
   auto_detect: true
-  tab_replace:
+  tab_replace: false
 
 # Category & Tag
 default_category: uncategorized
@@ -63,11 +70,20 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
+plugins:
+- hexo-generator-feed
+- hexo-generator-sitemap
 theme: coney
+#theme: dream
 
-# Deployment
+#sitemap
+sitemap:
+  path: sitemap.xml
+
+# Deployment 站点部署到github要配置
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.com.git
   branch: master
+  message: 正文字体和代码样式完成

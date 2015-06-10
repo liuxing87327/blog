@@ -1,0 +1,142 @@
+##### 菜单配置
+menu:
+  首页: /
+  归档: /archives
+  标签: /tags
+  分类: /categories
+  关于: /about
+## 比如在博客根目录`../source`下创建 `tags` 和 `categories` 文件夹
+## 然后创建 `index.md`
+## set `front-matter`as
+## layout: tags (or categories)
+## title: tags (or categories)
+## ---
+
+####右侧控件
+widgets: 
+- category
+- tag
+#- tagcloud
+- links
+- rss
+## provide six widgets:category,tag,rss,archive,tagcloud,links.
+## modify links in `/layout/_widget/links.ejs`.
+
+#### 订阅配置
+rss: /atom.xml ## RSS address.
+
+#### logo配置
+imglogo:
+  enable: false             ## display image logo true/false.
+  src: img/logo.jpg         ## `.svg` and `.png` are recommended,please put image into the theme folder `/coney/source/img`.
+favicon:                    ## size:32px*32px,`.ico` is recommended,please put image into the theme folder `/coney/source/img`.
+
+#### Author Avatar Picture
+author_img_enable: false ## 是不是显示作者的头像
+dataURI: false
+## if the picture's format is dataURI please set the value to true,otherwise set the value to false.
+## convert an image into base 64 data URIs http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/ .
+author_img_data: ''
+## paste the dataURI in ONE LINE and included it by ''.
+author_img: img/coney.png ## size:220px*220px. ## 作者头像，size: 220px*220px.
+## if the picture's format is `.png` or `.jpg`  instead of dataURI,you should set the `dataURI` value to false.
+
+#### 字体配置
+ShowCustomFont: true
+## 你可以自定义你的字体,路径在 `/coney/source/css/variable.styl` 和 `/coney/source/css/font.styl`.
+
+#### Toc 目录配置
+toc:
+  article: true   ## 是不是在文章中显示目录.如果某一篇文章中你不想显示侧边栏，可以在正文之前 `front-matter`中添加属性`toc: false`.
+  aside: true     ## 是不是在侧边栏中显示目录.
+
+##默认关闭，如果你使用Hexo经常发表Gallery类型的文章，那么请设置为true（同时需要复制fancybox.js到你的博客目录下scripts文件夹中）。
+
+#### Fancybox 作者信息，就是填写一些作者的相关信息
+fancybox: false
+## if you use gallery post or want use fancybox please set the value to true.
+## if you want use fancybox in ANY post please copy the file `fancybox.js`.
+## in theme folder `/coney/scripts` to your hexo blog folder `../scritps`.
+
+#### Author information 个人联系方式
+author:
+  google_plus:  https://plus.google.com/u/0/111580157002745346775/posts    ## eg:116338260303228776998 for https://plus.google.com/u/0/116338260303228776998
+  weibo:        1809603852 ## e.g. 436062867 for http://weibo.com/436062867
+  twitter:          ## e.g. gengbiaosky for https://twitter.com/yangjiansky
+  github:       liuxing87327   ## e.g. coneycode for https://github.com/coneycode
+  facebook:         ## e.g. gengbiao for https://favebook.com/yangjian
+  tsina:            ## e.g. 1664838973  Your weibo ID,It will be used in share button.
+  zhihu:            # coneylife, now it is no icon, I have push an issue to Font Awesome.
+
+#代码高亮 使用自带的
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: true
+  tab_replace: false
+
+#代码高亮 使用highlight.js
+highlightjs:
+  enable: false
+
+#### Comment 评论
+duoshuo: 
+  enable: true              ## duoshuo.com
+  short_name: liuxing87327  ## e.g. coney,duoshuo short name.
+
+#### Share button 分享
+jiathis:
+  enable: true         ## if you use jiathis as your share tool,the built-in share tool won't be display.
+  id: 2038458           ## e.g. 1501277 your jiathis ID.
+  tsina: 1809603852     ## e.g. 1664838973 Your weibo id,It will be used in share button.
+
+####CNZZ统计
+cnzz_analytics:
+  enable: true
+
+####Baidu Analytics
+baidu_analytics:
+  enable: false
+  id: 391982416296a0d54221f59fe35250d4 # your baidu analytics id
+
+####Baidu Share
+baidu_share:
+  enable: true
+  color: 4
+
+theme_color:
+    background: "#dddddd"
+    font: "#817c7c"
+    theme: '#ea6753'
+    footer: "#ddd"
+
+####百度搜索
+baidu_search:
+  enable: false
+  id: 
+  site: http://zhannei.baidu.com/cse/search  #your can change your site instead the default site
+
+####谷歌GA统计
+google_analytics:
+  enable: false
+  id:   ## e.g. UA-55273525-1 your google analytics ID.
+  site: ## e.g. gengbiao.me your google analytics site or set the value as auto.
+## You MUST upgrade to Universal Analytics first!
+## https://developers.google.com/analytics/devguides/collection/upgrade/?hl=zh_CN
+
+####背景音乐
+background_music:
+  enable: false
+  src:
+
+####谷歌站内搜索
+google_cse:
+  enable: true
+  cx: 004448258768383282576:0vooskxgngw  ## e.g. 010584917530731754670:91c2z8qybp0 your Custom Search ID
+## https://www.google.com/cse/ 
+## To enable the custom search You must create a "search" folder in '/source' and a "index.md" file
+## set the 'front-matter' as
+## layout: search 
+## title: search
+## ---
+
