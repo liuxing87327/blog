@@ -163,12 +163,6 @@ $(document).ready(function(){
 </script>
 <% } %>
 
-<!--使用highlightjs做代码样式渲染-->
-<% if (theme.highlightjs.enable){ %>
-    <script src="http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js"></script>
-    <script >hljs.initHighlightingOnLoad();</script>
-<% } %>
-
 <%- partial('baidu_analytics') %>
 <%- partial('google_analytics') %>
 <%- partial('cnzz_analytics') %>

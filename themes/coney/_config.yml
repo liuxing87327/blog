@@ -33,7 +33,7 @@ favicon:                    ## size:32px*32px,`.ico` is recommended,please put i
 
 #### Author Avatar Picture
 author_img_enable: false ## 是不是显示作者的头像
-dataURI: false
+dataURI: true
 ## if the picture's format is dataURI please set the value to true,otherwise set the value to false.
 ## convert an image into base 64 data URIs http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/ .
 author_img_data: ''
@@ -53,7 +53,7 @@ toc:
 ##默认关闭，如果你使用Hexo经常发表Gallery类型的文章，那么请设置为true（同时需要复制fancybox.js到你的博客目录下scripts文件夹中）。
 
 #### Fancybox 作者信息，就是填写一些作者的相关信息
-fancybox: false
+fancybox: true
 ## if you use gallery post or want use fancybox please set the value to true.
 ## if you want use fancybox in ANY post please copy the file `fancybox.js`.
 ## in theme folder `/coney/scripts` to your hexo blog folder `../scritps`.
@@ -75,10 +75,6 @@ highlight:
   auto_detect: true
   tab_replace: false
 
-#代码高亮 使用highlight.js
-highlightjs:
-  enable: false
-
 #### Comment 评论
 duoshuo: 
   enable: true              ## duoshuo.com
@@ -96,8 +92,8 @@ cnzz_analytics:
 
 ####Baidu Analytics
 baidu_analytics:
-  enable: false
-  id: 391982416296a0d54221f59fe35250d4 # your baidu analytics id
+  enable: true
+  id: e0270889606c4b2a973302b9badc62a1 # your baidu analytics id
 
 ####Baidu Share
 baidu_share:

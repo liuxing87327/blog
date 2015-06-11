@@ -56,23 +56,19 @@
     <link rel="apple-touch-icon" href="<%- config.root %><%- theme.apple_icon %>">
     <link rel="apple-touch-icon-precomposed" href="<%- config.root %><%- theme.apple_icon %>">
     <% } %>
+
     <%- css('css/style') %>
+
     <% if (theme.baidu_analytics.enable){ %>
     <script>
         var _hmt = _hmt || [];
-        (function () {
+        (function() {
             var hm = document.createElement("script");
-            var _bdId = '<%=theme.baidu_analytics.id%>';
-            hm.src = "//hm.baidu.com/hm.js?" + _bdId;
+            hm.src = "//hm.baidu.com/hm.js?<%=theme.baidu_analytics.id%>";
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
-    <% } %>
-
-    <!--使用highlightjs做代码样式渲染-->
-    <% if (theme.highlightjs.enable){ %>
-        <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/monokai_sublime.min.css" rel="stylesheet">
     <% } %>
 
 </head>
