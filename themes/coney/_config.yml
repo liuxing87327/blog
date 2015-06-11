@@ -32,13 +32,15 @@ imglogo:
 favicon:                    ## size:32px*32px,`.ico` is recommended,please put image into the theme folder `/coney/source/img`.
 
 #### Author Avatar Picture
-author_img_enable: false ## 是不是显示作者的头像
-dataURI: true
+author_img_enable: true ## 是不是显示作者的头像
+author_img: /images/liuxing.jpg ## size:220px*220px. ## 作者头像，size: 220px*220px.
+
+dataURI: false
+author_img_data: ''
+
 ## if the picture's format is dataURI please set the value to true,otherwise set the value to false.
 ## convert an image into base 64 data URIs http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/ .
-author_img_data: ''
 ## paste the dataURI in ONE LINE and included it by ''.
-author_img: img/coney.png ## size:220px*220px. ## 作者头像，size: 220px*220px.
 ## if the picture's format is `.png` or `.jpg`  instead of dataURI,you should set the `dataURI` value to false.
 
 #### 字体配置
@@ -65,7 +67,7 @@ author:
   twitter:          ## e.g. gengbiaosky for https://twitter.com/yangjiansky
   github:       liuxing87327   ## e.g. coneycode for https://github.com/coneycode
   facebook:         ## e.g. gengbiao for https://favebook.com/yangjian
-  tsina:            ## e.g. 1664838973  Your weibo ID,It will be used in share button.
+  tsina:        1809603852   ## e.g. 1664838973  Your weibo ID,It will be used in share button.
   zhihu:            # coneylife, now it is no icon, I have push an issue to Font Awesome.
 
 #代码高亮 使用自带的
@@ -106,12 +108,6 @@ theme_color:
     theme: '#ea6753'
     footer: "#ddd"
 
-####百度搜索
-baidu_search:
-  enable: false
-  id: 
-  site: http://zhannei.baidu.com/cse/search  #your can change your site instead the default site
-
 ####谷歌GA统计
 google_analytics:
   enable: false
@@ -125,11 +121,22 @@ background_music:
   enable: false
   src:
 
+####百度站内搜索
+baidu_search:
+  enable: false
+  id:
+  site: http://zhannei.baidu.com/cse/search  #your can change your site instead the default site
+
+####谷歌搜索 site方式
+google_search:
+  enable: false
+  site: http://www.google.com/search
+
 ####谷歌站内搜索
 google_cse:
   enable: true
   cx: 004448258768383282576:0vooskxgngw  ## e.g. 010584917530731754670:91c2z8qybp0 your Custom Search ID
-## https://www.google.com/cse/ 
+## https://www.google.com/cse/
 ## To enable the custom search You must create a "search" folder in '/source' and a "index.md" file
 ## set the 'front-matter' as
 ## layout: search 
