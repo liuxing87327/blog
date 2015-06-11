@@ -5,7 +5,7 @@ tags: [spring,websocket]
 ---
 
 J2EE7版（JSR-356） 
-http://liuxing87327.github.io/2015/02/09/websocket-demo
+http://liuxing.info/2015/02/09/websocket-demo
 
 相关依赖请参考上文，spring需要4.x
 
