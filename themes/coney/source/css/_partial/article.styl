@@ -58,17 +58,28 @@ article
     h1,h2
       font-size font-size+80
       line-height 1.2em
+      // 一二级标题加入分割线
+      //border-bottom 1px solid #eee;
+      //border-bottom 1px solid #d5dee7
+
     h3,h4,h5,h6
       font-size font-size+40
     h1,h2,h3,h3,h4,h5,h6
-      color color-heading
+      //标题颜色调整
+      //color color-heading
+      //color #2ca6cb
+      //color #181818
+      color #000
       font-smoothing antialiased
       padding 0.3em 0
       margin 0.5em 0
       >code
         color darken(color-gray,20%)
-    hr 
-      border 1px solid lighten(color-gray,30%)
+    //分割线
+    //hr
+    //  border 1px solid lighten(color-gray,30%)
+    hr
+      border 1px solid #d5dee7
     strong
       font-weight bold
     em
@@ -106,9 +117,18 @@ article
       font-weight blod
     ul li>code,ol li>code,p code,strong code,em code
       font-family font-mono
-      background color-code
-      color darken(color-font,10%)
-      border 1px solid darken(color-code,10%)
+
+      //bak
+
+      //background color-code
+      //color darken(color-font,10%)
+      //border 1px solid darken(color-code,10%)
+
+      // 去掉边框和填充色
+      //background color-code
+      color #ff0000
+      //border 1px solid darken(color-code,10%)
+
       padding 0 5px
       margin 0 2px
       font-size 90%

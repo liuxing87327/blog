@@ -104,7 +104,8 @@ baidu_share:
 
 theme_color:
     background: "#dddddd"
-    font: "#817c7c"
+    font: "#565656"
+#    font: "#222222"
     theme: '#ea6753'
     footer: "#ddd"
 
