@@ -86,4 +86,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.com.git
   branch: master
-  message: GitHub博客搭建
+  message: 修改Fork me on GitHub

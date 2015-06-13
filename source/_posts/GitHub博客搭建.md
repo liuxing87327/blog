@@ -55,7 +55,7 @@ GitHub Pages有以下几个优点
 - 此时进入`settings`应该会有`Your site is published at http://username.github.io`的条提示，访问一下，神奇吧！
 - 如果404，请检查你的仓库名或账号名，删除仓库重来，删除也是在`settings`最底部
       
-##域名配置
+##绑定独立域名
 ###购买域名
 
 不绑定独立域名则可以直接跳到 **使用hexo**
