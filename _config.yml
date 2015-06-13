@@ -86,4 +86,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.com.git
   branch: master
-  message: 使用liuxing.info域名
+  message: GitHub博客搭建

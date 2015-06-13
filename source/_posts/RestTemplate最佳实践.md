@@ -3,6 +3,7 @@ date: 2015-5-21 10:56:27
 category: [Java]
 tags: [RestTemplate,HttpClient,Spring]
 ---
+
 *什么是RestTemplate？*
 
 > RestTemplate是Spring提供的用于访问Rest服务的客户端，RestTemplate提供了多种便捷访问远程Http服务的方法，能够大大提高客户端的编写效率。
