@@ -46,7 +46,7 @@ future: true
 #代码高亮的开关需要在主题里面配置
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: true
   tab_replace: false
 
