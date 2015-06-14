@@ -1,6 +1,6 @@
 title: "使用jmagick将CMYK转换为RGB"
 date: 2013-05-23 00:27
-category: [Java]
+category: [java]
 tags: [jmagick]
 ---
 

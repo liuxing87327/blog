@@ -1,6 +1,6 @@
 title: "使用spring4.x的websocket支持"
 date: 2015-04-21 00:48
-category: [Java]
+category: [java]
 tags: [spring,websocket]
 ---
 

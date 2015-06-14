@@ -1,7 +1,7 @@
 title: "GitHub博客搭建"
 date: 2015-06-14 02:52
 category: [系统配置]
-tags: [GitHub Pages,Blog,godaddy,dnspod,hexo]
+tags: [github pages,blog,godaddy,dnspod,hexo]
 ---
 
 *GitHub带你装逼带你飞！你值得拥有！*

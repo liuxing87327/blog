@@ -86,4 +86,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.com.git
   branch: master
-  message: 修改代码渲染配色
+  message: 分类统一为小写

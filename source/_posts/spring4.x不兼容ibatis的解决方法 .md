@@ -1,6 +1,6 @@
 title: "spring4.x不兼容ibatis的解决方法 "
 date: 2015-04-21 00:46
-category: [Java]
+category: [java]
 tags: [spring,框架,ibatis]
 ---
 

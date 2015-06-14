@@ -1,6 +1,6 @@
 title: "引入公共头部时，控制引入js、css、title"
 date: 2012-08-16 00:10
-category: [Java]
+category: [java]
 tags: []
 ---
 

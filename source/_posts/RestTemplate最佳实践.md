@@ -1,7 +1,7 @@
 title: "RestTemplate最佳实践"
 date: 2015-5-21 10:56:27
-category: [Java]
-tags: [RestTemplate,HttpClient,Spring]
+category: [java]
+tags: [resttemplate,httpclient,spring]
 ---
 
 *什么是RestTemplate？*

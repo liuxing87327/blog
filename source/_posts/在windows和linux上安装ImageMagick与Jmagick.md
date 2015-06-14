@@ -1,6 +1,6 @@
 title: "在windows和linux上安装ImageMagick与Jmagick"
 date: 2013-12-20 00:29
-category: [Java]
+category: [java]
 tags: [jmagick,linux,windows]
 ---
 
