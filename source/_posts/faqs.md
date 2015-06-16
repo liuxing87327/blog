@@ -1,6 +1,7 @@
 title: "备忘"
 date: 2015-01-01 00:00:00
 category: 其他
+tags: [Markdown,GIT,CNZZ]
 
 ---
 
