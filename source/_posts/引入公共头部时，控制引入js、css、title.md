@@ -1,7 +1,7 @@
 title: "引入公共头部时，控制引入js、css、title"
 date: 2012-08-16 00:10
-category: [java]
-tags: []
+category: Java
+
 ---
 
 引入公共头部时，控制引入js、css、title，避免重复造轮子，能少敲点代码就少敲点

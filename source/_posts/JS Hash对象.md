@@ -1,7 +1,8 @@
 title: "JS Hash对象"
 date: 2012-09-08 00:23
-category: [前端]
-tags: [js]
+category: 前端
+tags: js
+
 ---
 引用：http://blog.csdn.net/cheng5128/article/details/5072385
 

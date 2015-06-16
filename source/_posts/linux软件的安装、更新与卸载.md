@@ -1,7 +1,8 @@
 title: "linux软件的安装、更新与卸载"
 date: 2014-04-25 01:52
-category: [系统配置]
-tags: [linux]
+category: 系统配置
+tags: linux
+
 ---
 
 ##介绍

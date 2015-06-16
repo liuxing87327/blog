@@ -1,7 +1,8 @@
 title: "Windows 系统常用命令"
 date: 2014-03-20 10:54
-category: [系统配置]
-tags: [windows]
+category: 系统配置
+tags: windows
+
 ---
 
 来自小辉哥

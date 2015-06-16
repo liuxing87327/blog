@@ -1,7 +1,8 @@
 title: "java和数据库计算两个坐标的距离"
 date: 2015-04-21 00:41
-category: [java]
-tags: [地图,坐标运算,距离]
+category: Java
+tags: [地图, 坐标运算, 距离]
+
 ---
 
 ##使用Java进行计算

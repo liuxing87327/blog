@@ -1,7 +1,8 @@
 title: Java Websocket实例
 date: 2015-02-09 23:33:56
-category: [java]
-tags: [websocket]
+category: Java
+tags: websocket
+
 ---
 记录下自己在用的websocket
 

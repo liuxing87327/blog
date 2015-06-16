@@ -1,7 +1,8 @@
 title: "jquery常用选择器"
 date: 2015-02-01 00:00:00
-category: [前端]
-tags: [jquery]
+category: 前端
+tags: jquery
+
 ---
 
 记录一下

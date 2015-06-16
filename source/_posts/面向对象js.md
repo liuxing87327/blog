@@ -1,7 +1,8 @@
 title: "面向对象js"
 date: 2012-07-04 00:00:00
-category: [前端]
-tags: [js]
+category: 前端
+tags: js
+
 ---
 一些很久前写的东西
 

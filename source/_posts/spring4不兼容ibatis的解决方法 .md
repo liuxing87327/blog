@@ -1,7 +1,8 @@
-title: "spring4.x不兼容ibatis的解决方法 "
+title: "spring4不兼容ibatis的解决方法 "
 date: 2015-04-21 00:46
-category: [java]
-tags: [spring,框架,ibatis]
+category: Java
+tags: [Spring, 框架, ibatis]
+
 ---
 
 因为spring升级到4.x后，orm包里面移除了对ibatis的支持，

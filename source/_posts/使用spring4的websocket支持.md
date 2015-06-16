@@ -1,7 +1,8 @@
-title: "使用spring4.x的websocket支持"
+title: "使用spring4的websocket支持"
 date: 2015-04-21 00:48
-category: [java]
-tags: [spring,websocket]
+category: Java
+tags: [Spring, websocket]
+
 ---
 
 J2EE7版（JSR-356） 

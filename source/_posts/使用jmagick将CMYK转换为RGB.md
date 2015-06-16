@@ -1,7 +1,8 @@
 title: "使用jmagick将CMYK转换为RGB"
 date: 2013-05-23 00:27
-category: [java]
-tags: [jmagick]
+category: Java
+tags: jmagick
+
 ---
 
 最近发现公司图片库中有些打水印的图片水印色彩和其他的不一样，后来发现是设计师上传的图片的色彩值是CMYK的，想要统一成RGB格式的。

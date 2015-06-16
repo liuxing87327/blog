@@ -1,7 +1,8 @@
 title: "使用pinyin4j将中文转换为拼音"
 date: 2012-08-16 00:20
-category: [java]
-tags: [pinyin4j]
+category: Java
+tags: pinyin4j
+
 ---
 直接代码
 
