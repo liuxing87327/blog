@@ -86,4 +86,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.com.git
   branch: master
-  message: 分类统一为小写
+  message: RestTemplate最佳实践调整，百度元验证，开启标签云
