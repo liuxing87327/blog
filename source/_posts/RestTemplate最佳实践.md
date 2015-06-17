@@ -21,9 +21,9 @@ tags: [RestTemplate, httpClient, Spring]
 
 RestTemplate默认是使用SimpleClientHttpRequestFactory，内部是调用jdk的HttpConnection，默认超时为-1
 
-@Autowire
+@Autowired
 RestTemplate simpleRestTemplate
-@Autowire
+@Autowired
 RestTemplate restTemplate
 
 ###基于jdk的spring的RestTemplate
