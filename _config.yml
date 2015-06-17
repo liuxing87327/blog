@@ -86,4 +86,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: 开启云标签
+  message: Spring Cache使用
