@@ -2,7 +2,8 @@
 // Just change those colors
 // https//github.com/chriskempson/tomorrow-theme
 //highlight-background = #1d1f21
-highlight-background = #4d4d4c
+//highlight-background = #4d4d4c
+highlight-background = #eee
 
 highlight-current-line = #282a2e
 
@@ -16,7 +17,9 @@ highlight-yellow = #f0c674
 highlight-green = #b5bd68
 highlight-aqua = #8abeb7
 highlight-blue = #81a2be
+
 highlight-purple = #b294bb
+//highlight-purple = #a71d5d
 
 $code-block
   background highlight-background
@@ -26,6 +29,9 @@ $code-block
   color highlight-foreground
   line-height line-height
   font-size font-size
+  //代码块加边框
+  border 1px solid #c5c8c6
+  border-radius 6px
 
 $line-numbers
   color highlight-line-numbers
@@ -47,6 +53,8 @@ $line-numbers
       border none
       margin 0
       padding 0
+      //注释配色
+      color #888
     table
       margin 0
       width auto

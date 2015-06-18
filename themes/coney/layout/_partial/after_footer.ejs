@@ -45,39 +45,85 @@ $(document).ready(function(){
   });
 });
 </script>
+
 <% if (is_post()) { %>
 <script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
+    $(document).ready(function () {
+        var ai = $('.article-content>iframe'),
+                ae = $('.article-content>embed'),
+                t = $('#toc'),
+                h = $('article h2')
+        ah = $('article h2'),
+                ta = $('#toc.toc-aside'),
+                o = $('.openaside'),
+                c = $('.closeaside');
+        if (ai.length > 0) {
+            ai.wrap('<div class="video-container" />');
+        }
+        ;
+        if (ae.length > 0) {
+            ae.wrap('<div class="video-container" />');
+        }
+        ;
+        if (ah.length == 0) {
+            t.css('display', 'none');
+        } else {
+            c.click(function () {
+                ta.css('display', 'block').addClass('fadeIn');
+            });
+            o.click(function () {
+                ta.css('display', 'none');
+            });
+            $(window).scroll(function () {
+                ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
+            });
+        }
+        ;
+
+//        box-shadow: 5px 5px 5px #888888;
+//        border-radius: 6px;
+//        border: 1px solid #ccc;
+
+//        文章目录自动浮动
+        var initOffsetTop = $('#toc').offset().top,
+                isFixed = false;
+
+        $(window).scroll(function(){
+            setTimeout(function(){
+                var offsetTop = $('#toc').offset().top,
+                        scrollTop = $(this).scrollTop();
+
+                if(scrollTop >= offsetTop && isFixed === false){
+                    $('#toc').css({
+                        position: 'fixed',
+                        right: '35px',
+                        top: '-10px',
+                        "z-index": 999,
+                        "overflow-y":'auto',
+                        "max-height":'600px'
+                    }).hide().fadeIn(800);
+
+                    isFixed = true;
+
+                    $("#asidepart").hide();
+                }
+
+                if(scrollTop < initOffsetTop && isFixed === true){
+                    $('#toc').css({
+                        position: 'static',
+                        "overflow-y":'auto',
+                        "max-height":'auto'
+                    }).hide().fadeIn(500);
+                    isFixed = false;
+
+                    $("#asidepart").show();
+                }
+            }, 50);
+        });
     });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
 </script>
 <% } %>
+
 <% if ((page.layout=='post'||page.layout=='page')&&!theme.jiathis.enable) { %>
 <script type="text/javascript">
 $(document).ready(function(){ 
