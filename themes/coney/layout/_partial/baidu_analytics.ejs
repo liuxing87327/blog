@@ -38,7 +38,7 @@
             "type": "slide",
             "bdImg": _bdImg,
             "bdPos": "right",
-            "bdTop": "350"
+            "bdTop": "250"
         },
         "image": {
             "viewList": [
@@ -50,7 +50,7 @@
                 "tqq"
             ],
             "viewText": "分享：",
-            "viewSize": "16"
+            "viewSize": "24"
         },
         "selectShare": {
             "bdContainerClass": null,
@@ -65,14 +65,5 @@
         }
     };
     with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-<% } %>
-
-<!--close baidu_analytics, using asyn baidu_analytics in head.ejs-->
-<% if (false){ %>
-<script type="text/javascript">
-    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    var _bdId = '<%=theme.baidu_analytics.id%>';
-    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F" + _bdId + "'  type='text/javascript'%3E%3C/script%3E"));
 </script>
 <% } %>

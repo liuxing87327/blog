@@ -167,15 +167,18 @@
 <% if (((page.layout == 'post' || page.layout == 'page') && theme.duoshuo.enable && page.comments) || (theme.duoshuo.enable && theme.widgets.indexOf('recent_comments') !== -1 )) { %>
 <script type="text/javascript">
     var duoshuoQuery = {short_name: "<%= theme.duoshuo.short_name %>"};
-    (function () {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';
-        ds.async = true;
-        ds.src = '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
+
+    $(document).ready(function () {
+        (function () {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0]
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    });
 </script>
 <% } %>
 

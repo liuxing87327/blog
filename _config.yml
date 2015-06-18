@@ -90,4 +90,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: 删除冗余主题，分享和点评样式调整
+  message: 优化多说的加载，百度分享浮动位置调整
