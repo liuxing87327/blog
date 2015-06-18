@@ -80,46 +80,52 @@ $(document).ready(function(){
         }
         ;
 
-//        box-shadow: 5px 5px 5px #888888;
-//        border-radius: 6px;
-//        border: 1px solid #ccc;
+        // 获取设备信息
+        var ua = navigator.userAgent;
+        console.log(ua)
+        var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+                isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
+                isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+                isMobile = isIphone || isAndroid;
 
-//        文章目录自动浮动
-        var initOffsetTop = $('#toc').offset().top,
-                isFixed = false;
-
-        $(window).scroll(function(){
-            setTimeout(function(){
-                var offsetTop = $('#toc').offset().top,
-                        scrollTop = $(this).scrollTop();
-
-                if(scrollTop >= offsetTop && isFixed === false){
-                    $('#toc').css({
-                        position: 'fixed',
-                        right: '35px',
-                        top: '-10px',
-                        "z-index": 999,
-                        "overflow-y":'auto',
-                        "max-height":'600px'
-                    }).hide().fadeIn(800);
-
-                    isFixed = true;
-
-                    $("#asidepart").hide();
-                }
-
-                if(scrollTop < initOffsetTop && isFixed === true){
-                    $('#toc').css({
-                        position: 'static',
-                        "overflow-y":'auto',
-                        "max-height":'auto'
-                    }).hide().fadeIn(500);
+        // 文章目录自动浮动
+        if (!isMobile) {
+            var initOffsetTop = $('#toc').offset().top,
                     isFixed = false;
 
-                    $("#asidepart").show();
-                }
-            }, 50);
-        });
+            $(window).scroll(function () {
+                setTimeout(function () {
+                    var offsetTop = $('#toc').offset().top,
+                            scrollTop = $(this).scrollTop();
+
+                    if (scrollTop >= offsetTop && isFixed === false) {
+                        $('#toc').css({
+                            position: 'fixed',
+                            right: '35px',
+                            top: '-10px',
+                            "z-index": 999,
+                            "overflow-y": 'auto',
+                            "max-height": '600px'
+                        }).hide().fadeIn(500);
+
+                        isFixed = true;
+
+                        $("#asidepart").hide();
+                    }
+
+                    if (scrollTop < initOffsetTop && isFixed === true) {
+                        $('#toc').css({
+                            position: 'static',
+                            "overflow-y": 'auto',
+                            "max-height": 'auto'
+                        }).hide().fadeIn(500);
+                        isFixed = false;
+
+                        $("#asidepart").show();
+                    }
+                }, 50);
+            });
+        }
     });
 </script>
 <% } %>
