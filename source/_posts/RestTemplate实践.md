@@ -1,4 +1,4 @@
-title: "RestTemplate最佳实践"
+title: "RestTemplate实践"
 date: 2015-5-21 10:56:27
 category: Java
 tags: [RestTemplate, httpClient, Spring]
@@ -177,7 +177,7 @@ public class SimpleRestClient {
 
     static {
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-        requestFactory.setReadTimeout(10000);
+        requestFactory.setReadTimeout(5000);
         requestFactory.setConnectTimeout(5000);
 
         // 添加转换器
@@ -292,7 +292,7 @@ public class RestClient {
         // 连接不够用的等待时间，不宜过长，必须设置，比如连接不够用时，时间过长将是灾难性的
         clientHttpRequestFactory.setConnectionRequestTimeout(200);
         // 缓冲请求数据，默认值是true。通过POST或者PUT大量发送数据时，建议将此属性更改为false，以免耗尽内存。
-        clientHttpRequestFactory.setBufferRequestBody(false);
+        // clientHttpRequestFactory.setBufferRequestBody(false);
 
         // 添加内容转换器
         List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();

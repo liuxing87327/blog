@@ -90,4 +90,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: 优化多说的加载，百度分享浮动位置调整
+  message: 调整文件名

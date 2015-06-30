@@ -236,7 +236,7 @@ public void remove(int userCode) {
 ```java
 @Cacheable(value = "kyAreaCache", key="targetClass + '.' + methodName + '.' + #areaId")
 public KyArea findById(String areaId) {
-    \\ 业务代码省略
+    // 业务代码省略
 }
 ```
 
@@ -395,7 +395,7 @@ xml风格
 ```java
 @Cacheable(value = "kyMemoryCache", key="targetClass + '.' + methodName")
 public Map<String, String> queryMobiles(){
-    \\业务代码省略
+    // 业务代码省略
 }
 ```
 
@@ -653,7 +653,7 @@ public class MemcachedCacheManager extends AbstractCacheManager {
 ```java
 @Cacheable(value = "kyAreaCache", key="targetClass + '.' + methodName + '.' + #areaId")
 public KyArea findById(String areaId) {
-    \\ 业务代码省略
+    // 业务代码省略
 }
 ```
 
