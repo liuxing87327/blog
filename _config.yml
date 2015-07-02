@@ -90,4 +90,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: 调整文件名
+  message: 加入招聘链接
