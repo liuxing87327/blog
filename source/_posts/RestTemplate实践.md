@@ -15,6 +15,8 @@ tags: [RestTemplate, httpClient, Spring]
    
 ---
 
+[最新实例代码](#完整的实例代码) 更新于`2015-07-30`
+
 ##xml配置的方式
 
 请查看RestTemplate源码了解细节，知其然知其所以然！
@@ -242,8 +244,6 @@ import java.util.concurrent.TimeUnit;
  * @author：liuxing
  * @date：2015-05-18 08:48
  */
-@Component
-@Lazy(false)
 public class RestClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleRestClient.class);
@@ -254,30 +254,22 @@ public class RestClient {
         // 长连接保持30秒
         PoolingHttpClientConnectionManager pollingConnectionManager = new PoolingHttpClientConnectionManager(30, TimeUnit.SECONDS);
         // 总连接数
-        pollingConnectionManager.setMaxTotal(1000);
+        pollingConnectionManager.setMaxTotal(500);
         // 同路由的并发数
-        pollingConnectionManager.setDefaultMaxPerRoute(1000);
+        pollingConnectionManager.setDefaultMaxPerRoute(500);
 
         HttpClientBuilder httpClientBuilder = HttpClients.custom();
         httpClientBuilder.setConnectionManager(pollingConnectionManager);
         // 重试次数，默认是3次，没有开启
         httpClientBuilder.setRetryHandler(new DefaultHttpRequestRetryHandler(2, true));
         // 保持长连接配置，需要在头添加Keep-Alive
-        httpClientBuilder.setKeepAliveStrategy(new DefaultConnectionKeepAliveStrategy());
-
-//        RequestConfig.Builder builder = RequestConfig.custom();
-//        builder.setConnectionRequestTimeout(200);
-//        builder.setConnectTimeout(5000);
-//        builder.setSocketTimeout(5000);
-//
-//        RequestConfig requestConfig = builder.build();
-//        httpClientBuilder.setDefaultRequestConfig(requestConfig);
+        httpClientBuilder.setKeepAliveStrategy(DefaultConnectionKeepAliveStrategy.INSTANCE);
 
         List<Header> headers = new ArrayList<>();
         headers.add(new BasicHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.16 Safari/537.36"));
         headers.add(new BasicHeader("Accept-Encoding", "gzip,deflate"));
-        headers.add(new BasicHeader("Accept-Language", "zh-CN"));
-        headers.add(new BasicHeader("Connection", "Keep-Alive"));
+        headers.add(new BasicHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6"));
+        headers.add(new BasicHeader("Connection", "keep-alive"));
 
         httpClientBuilder.setDefaultHeaders(headers);
 
@@ -300,6 +292,7 @@ public class RestClient {
         messageConverters.add(new FormHttpMessageConverter());
         messageConverters.add(new MappingJackson2XmlHttpMessageConverter());
         messageConverters.add(new MappingJackson2HttpMessageConverter());
+        messageConverters.add(new ByteArrayHttpMessageConverter());
 
         restTemplate = new RestTemplate(messageConverters);
         restTemplate.setRequestFactory(clientHttpRequestFactory);
@@ -312,7 +305,6 @@ public class RestClient {
 
     }
 
-    @PostConstruct
     public static RestTemplate getClient() {
         return restTemplate;
     }
@@ -320,121 +312,70 @@ public class RestClient {
 }
 ```
 
-###HttpClientUtils
+##使用样例
+###注意点
+api里面可以做自动的参数匹配：
+如：http://you domainn name/test?empNo={empNo}，则下面方法的最后一个参数为数据匹配参数，会自动根据key进行查找，然后替换
 
+API没有声明异常，注意进行异常处理
+
+更多使用语法请查看API文档
+
+###完整的实例代码
+
+定义一个异常
 ```java
-import com.dooioo.commons.Strings;
-import com.dooioo.framework.SpringContextHolder;
-import com.dooioo.ky.cache.HttpClientResultCache;
-import org.apache.commons.collections.MapUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-
-import java.util.Map;
-
-/**
- * 
- * 类功能说明：httpclient工具类,基于httpclient 4.x
- * Title: HttpClientUtils.java
- * @author 刘兴
- * @date 2014-3-7 下午7:48:58
- * @version V1.0
- */
-public class HttpClientUtils {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientUtils.class);
-
-    /**
-     * post请求
-     * @param url
-     * @param formParams
-     * @return
-     */
-    public static String doPost(String url, Map<String, String> formParams) {
-        if (MapUtils.isEmpty(formParams)) {
-            return doPost(url);
-        }
-
-        try {
-            MultiValueMap<String, String> requestEntity = new LinkedMultiValueMap<>();
-            formParams.keySet().stream().forEach(key -> requestEntity.add(key, MapUtils.getString(formParams, key, "")));
-            return RestClient.getClient().postForObject(url, requestEntity, String.class);
-        } catch (Exception e) {
-            LOGGER.error("POST请求出错：{}", url, e);
-        }
-
-        return Strings.EMPTY;
-    }
-
-    /**
-     * post请求
-     * @param url
-     * @return
-     */
-    public static String doPost(String url) {
-        try {
-            return RestClient.getClient().postForObject(url, HttpEntity.EMPTY, String.class);
-        } catch (Exception e) {
-            LOGGER.error("POST请求出错：{}", url, e);
-        }
-
-        return Strings.EMPTY;
-    }
-
-    /**
-     * get请求
-     * @param url
-     * @return
-     */
-    public static String doGet(String url) {
-        try {
-            return RestClient.getClient().getForObject(url, String.class);
-        } catch (Exception e) {
-            LOGGER.error("GET请求出错：{}", url, e);
-        }
-
-        return Strings.EMPTY;
-    }
-
-}
-```
-
-
-###ErrorHolder
-自定义的一个异常结果包装类
-
-```java
+import org.springframework.core.NestedRuntimeException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 
 /**
- * @title：ErrorHolder
- * @author：liuxing
- * @date：2015-06-16 11:01
+ * 包装一个RestClient请求时抛出的异常
+ *
+ * @author ：liuxing
+ * @since ：2015-07-15 21:33
  */
-public class ErrorHolder {
+public class RestClientException extends NestedRuntimeException {
 
+    /**
+     * 状态码
+     */
     private HttpStatus statusCode;
-
+    /**
+     * 状态码文本
+     */
     private String statusText;
-
+    /**
+     * 异常时返回的内容
+     */
     private String responseBody;
-
+    /**
+     * 返回的头
+     */
     private HttpHeaders responseHeaders;
 
-    public ErrorHolder(HttpStatus statusCode, String statusText, String responseBody) {
-        this.statusCode = statusCode;
-        this.statusText = statusText;
-        this.responseBody = responseBody;
-    }
+    public RestClientException(Exception exception) {
+        super(exception.getMessage(), exception);
 
-    public ErrorHolder(String statusText) {
-        this.statusText = statusText;
+        if (exception instanceof HttpServerErrorException) {
+            HttpServerErrorException e = (HttpServerErrorException) exception;
+
+            this.statusCode = e.getStatusCode();
+            this.statusText = e.getStatusText();
+            this.responseBody = e.getResponseBodyAsString();
+            this.responseHeaders = e.getResponseHeaders();
+        } else if (exception instanceof HttpClientErrorException) {
+            HttpClientErrorException e = (HttpClientErrorException) exception;
+
+            this.statusCode = e.getStatusCode();
+            this.statusText = e.getStatusText();
+            this.responseBody = e.getResponseBodyAsString();
+            this.responseHeaders = e.getResponseHeaders();
+        } else {
+            this.statusText = exception.getMessage();
+        }
     }
 
     public HttpStatus getStatusCode() {
@@ -468,38 +409,324 @@ public class ErrorHolder {
     public void setResponseHeaders(HttpHeaders responseHeaders) {
         this.responseHeaders = responseHeaders;
     }
-
-    public static ErrorHolder build(Exception exception) {
-        if (exception instanceof HttpServerErrorException) {
-            HttpServerErrorException e = (HttpServerErrorException) exception;
-            return new ErrorHolder(e.getStatusCode(), e.getStatusText(), e.getResponseBodyAsString());
-        }
-
-        if (exception instanceof HttpClientErrorException) {
-            HttpClientErrorException e = (HttpClientErrorException) exception;
-            return new ErrorHolder(e.getStatusCode(), e.getStatusText(), e.getResponseBodyAsString());
-        }
-
-        return new ErrorHolder(exception.getMessage());
-    }
 }
 ```
 
-##使用样例
-
-api里面可以做自动的参数匹配：
-如：http://you domainn name/test?empNo={empNo}，则下面方法的最后一个参数为数据匹配参数，会自动根据key进行查找，然后替换
-
-API没有声明异常，注意进行异常处理
-
-更多使用语法请查看API文档
+工具集
 
 ```java
-ResponseEntity<List<KyArea>> result = RestClient.getClient().exchange(DIVIDE_PLATE_API, HttpMethod.GET, HttpEntity.EMPTY, new ParameterizedTypeReference<List<KyArea>>() {}, map("empNo", empNo));
-List<KyArea> list = result.getBody();
+import com.dooioo.se.commons.Lang;
+import com.dooioo.se.utils.RestClientBuilder;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.collections.MapUtils;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
-ResponseEntity<KyArea> result = RestClient.getClient().exchange(DIVIDE_PLATE_API, HttpMethod.GET, HttpEntity.EMPTY, KyArea.class, map("empNo", empNo));
-KyArea kyArea = result.getBody();
+import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * httpclient工具类,基于httpclient 4.x
+ * 不需要设置header的情况：
+ * 1.普通的非校验型请求
+ * 2.普通的表单请求
+ * <p/>
+ * 需要设置header的情况：
+ * 1.头部带token校验的请求
+ * 2.提交json数据的请求
+ *
+ * @author 刘兴
+ * @version V1.0
+ * @since 2014-3-7 下午7:48:58
+ */
+public class RestClient {
+
+    /**
+     * 执行请求
+     *
+     * @param url          请求地址
+     * @param method       请求方式
+     * @param responseType 返回的数据类型
+     * @param uriVariables url自动匹配替换的参数，如url为api/{a}/{b},参数为["1","2"],则解析的url为api/1/2，使用Map参数时，遵循按key匹配
+     * @return 结果对象
+     * @throws RestClientException RestClient异常，包含状态码和非200的返回内容
+     */
+    public static <T> T exchange(String url, HttpMethod method, Class<T> responseType, Object... uriVariables) throws RestClientException {
+        return exchange(url, method, null, null, responseType, uriVariables);
+    }
+
+    /**
+     * 执行请求
+     *
+     * @param url          请求地址
+     * @param method       请求方式
+     * @param headers      设置的头信息
+     * @param responseType 返回的数据类型
+     * @param uriVariables url自动匹配替换的参数，如url为api/{a}/{b},参数为["1","2"],则解析的url为api/1/2，使用Map参数时，遵循按key匹配
+     * @return 结果对象
+     * @throws RestClientException RestClient异常，包含状态码和非200的返回内容
+     */
+    public static <T> T exchange(String url, HttpMethod method, HttpHeaders headers, Class<T> responseType, Object... uriVariables) throws RestClientException {
+        return exchange(url, method, headers, null, responseType, uriVariables);
+    }
+
+    /**
+     * 执行请求
+     *
+     * @param url          请求地址
+     * @param method       请求方式
+     * @param body         要提交的数据
+     * @param responseType 返回数据类型
+     *                     返回bean时指定Class
+     * @param uriVariables url自动匹配替换的参数，如url为api/{a}/{b},参数为["1","2"],则解析的url为api/1/2，使用Map参数时，遵循按key匹配
+     * @return 结果对象
+     * @throws RestClientException RestClient异常，包含状态码和非200的返回内容
+     */
+    public static <T> T exchange(String url, HttpMethod method, Object body, Class<T> responseType, Object... uriVariables) throws RestClientException {
+        return exchange(url, method, null, body, responseType, uriVariables);
+    }
+
+    /**
+     * 执行请求
+     *
+     * @param url          请求地址
+     * @param method       请求方式
+     * @param httpHeaders  请求头
+     * @param body         要提交的数据
+     * @param responseType 返回数据类型
+     *                     返回bean时指定Class
+     * @param uriVariables url自动匹配替换的参数，如url为api/{a}/{b},参数为["1","2"],则解析的url为api/1/2，使用Map参数时，遵循按key匹配
+     * @return 结果对象
+     * @throws RestClientException RestClient异常，包含状态码和非200的返回内容
+     */
+    public static <T> T exchange(String url, HttpMethod method, HttpHeaders httpHeaders, Object body, Class<T> responseType, Object... uriVariables) throws RestClientException {
+        try {
+            HttpEntity<?> requestEntity = new HttpEntity(body, httpHeaders);
+            requestEntity = convert(requestEntity);
+
+            if (uriVariables.length == 1 && uriVariables[0] instanceof Map) {
+                Map<String, ?> _uriVariables = (Map<String, ?>) uriVariables[0];
+                return getClient().exchange(url, method, requestEntity, responseType, _uriVariables).getBody();
+            }
+
+            return getClient().exchange(url, method, requestEntity, responseType, uriVariables).getBody();
+        } catch (Exception e) {
+            throw new RestClientException(e);
+        }
+    }
+
+    /**
+     * 执行请求
+     *
+     * @param url          请求地址
+     * @param method       请求方式
+     * @param responseType 返回的数据类型，例：new ParameterizedTypeReference<List<Bean>>(){}
+     * @param uriVariables url自动匹配替换的参数，如url为api/{a}/{b},参数为["1","2"],则解析的url为api/1/2，使用Map参数时，遵循按key匹配
+     * @return 结果对象
+     * @throws RestClientException RestClient异常，包含状态码和非200的返回内容
+     */
+    public static <T> T exchange(String url, HttpMethod method, ParameterizedTypeReference<T> responseType, Object... uriVariables) throws RestClientException {
+        return exchange(url, method, null, null, responseType, uriVariables);
+    }
+
+    /**
+     * 执行请求
+     *
+     * @param url          请求地址
+     * @param method       请求方式
+     * @param headers      设置的头信息
+     * @param responseType 返回的数据类型，例：new ParameterizedTypeReference<List<Bean>>(){}
+     * @param uriVariables url自动匹配替换的参数，如url为api/{a}/{b},参数为["1","2"],则解析的url为api/1/2，使用Map参数时，遵循按key匹配
+     * @return 结果对象
+     * @throws RestClientException RestClient异常，包含状态码和非200的返回内容
+     */
+    public static <T> T exchange(String url, HttpMethod method, HttpHeaders headers, ParameterizedTypeReference<T> responseType, Object... uriVariables) throws RestClientException {
+        return exchange(url, method, headers, null, responseType, uriVariables);
+    }
+
+    /**
+     * 执行请求
+     *
+     * @param url          请求地址
+     * @param method       请求方式
+     * @param body         要提交的数据
+     * @param responseType 返回数据类型，例：new ParameterizedTypeReference<List<Bean>>(){}
+     *                     返回bean时指定Class
+     * @param uriVariables url自动匹配替换的参数，如url为api/{a}/{b},参数为["1","2"],则解析的url为api/1/2，使用Map参数时，遵循按key匹配
+     * @return 结果对象
+     * @throws RestClientException RestClient异常，包含状态码和非200的返回内容
+     */
+    public static <T> T exchange(String url, HttpMethod method, Object body, ParameterizedTypeReference<T> responseType, Object... uriVariables) throws RestClientException {
+        return exchange(url, method, null, body, responseType, uriVariables);
+    }
+
+    /**
+     * 执行请求
+     *
+     * @param url          请求地址
+     * @param method       请求方式
+     * @param httpHeaders  请求头
+     * @param body         要提交的数据
+     * @param responseType 返回数据类型，例：new ParameterizedTypeReference<List<Bean>>(){}
+     *                     返回bean时指定Class
+     * @param uriVariables url自动匹配替换的参数，如url为api/{a}/{b},参数为["1","2"],则解析的url为api/1/2，使用Map参数时，遵循按key匹配
+     * @return 结果对象
+     * @throws RestClientException RestClient异常，包含状态码和非200的返回内容
+     */
+    public static <T> T exchange(String url, HttpMethod method, HttpHeaders httpHeaders, Object body, ParameterizedTypeReference<T> responseType, Object... uriVariables) throws RestClientException {
+        try {
+            HttpEntity<?> requestEntity = new HttpEntity(body, httpHeaders);
+            requestEntity = convert(requestEntity);
+
+            if (uriVariables.length == 1 && uriVariables[0] instanceof Map) {
+                Map<String, ?> _uriVariables = (Map<String, ?>) uriVariables[0];
+                return getClient().exchange(url, method, requestEntity, responseType, _uriVariables).getBody();
+            }
+
+            return getClient().exchange(url, method, requestEntity, responseType, uriVariables).getBody();
+        } catch (Exception e) {
+            throw new RestClientException(e);
+        }
+    }
+
+    /**
+     * 获得一个RestTemplate客户端
+     *
+     * @return
+     */
+    public static RestTemplate getClient() {
+        return RestClientBuilder.build();
+    }
+
+    /**
+     * 获取一个application/x-www-form-urlencoded头
+     *
+     * @return
+     */
+    public static HttpHeaders buildBasicFORMHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        return headers;
+    }
+
+    /**
+     * 获取一个application/json头
+     *
+     * @return
+     */
+    public static HttpHeaders buildBasicJSONHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return headers;
+    }
+
+    /**
+     * 获取一个text/html头
+     *
+     * @return
+     */
+    public static HttpHeaders buildBasicHTMLHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.TEXT_HTML);
+        return headers;
+    }
+
+    /**
+     * 构建一个json头
+     *
+     * @param arrays
+     * @return
+     */
+    public static HttpHeaders buildJSONHeaders(Object... arrays) {
+        if (arrays.length % 2 != 0) {
+            throw new RuntimeException("arrays 长度 必须为偶数");
+        }
+
+        HttpHeaders headers = buildBasicJSONHeaders();
+
+        for (int i = 0; i < arrays.length; i++) {
+            headers.add(Lang.defaultEmptyStr(arrays[i]), Lang.defaultEmptyStr(arrays[++i]));
+        }
+
+        return headers;
+    }
+
+    /**
+     * 对bean对象转表单模型做处理
+     *
+     * @param requestEntity
+     * @return
+     */
+    private static HttpEntity<?> convert(HttpEntity<?> requestEntity) {
+        Object body = requestEntity.getBody();
+        HttpHeaders headers = requestEntity.getHeaders();
+
+        if (body == null) {
+            return requestEntity;
+        }
+
+        if (body instanceof Map) {
+            MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
+            Map<String, ?> _body = (Map<String, ?>) body;
+            for (String key : _body.keySet()) {
+                multiValueMap.add(key, MapUtils.getString(_body, key));
+            }
+
+            requestEntity = new HttpEntity<>(multiValueMap, headers);
+        }
+
+        if (headers == null || !MediaType.APPLICATION_FORM_URLENCODED.equals(headers.getContentType())) {
+            return requestEntity;
+        }
+
+        if (body instanceof String) {
+            return requestEntity;
+        }
+
+        if (body instanceof Collection) {
+            return requestEntity;
+        }
+
+        if (body instanceof Map) {
+            return requestEntity;
+        }
+
+        MultiValueMap<String, Object> formEntity = new LinkedMultiValueMap<>();
+
+        Field[] fields = body.getClass().getDeclaredFields();
+        for (int i = 0; i < fields.length; i++) {
+            String name = fields[i].getName();
+            String value = null;
+
+            try {
+                value = BeanUtils.getProperty(body, name);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            formEntity.add(name, value);
+        }
+
+        return new HttpEntity<>(formEntity, headers);
+    }
+
+    public final static Object[] EMPTY_URI_VARIABLES = new Object[]{};
+
+    public final static HttpHeaders EMPTY_HEADERS = new HttpHeaders();
+
+    public final static Map<String, ?> EMPTY_BODY = new HashMap<>(1);
+
+    public final static HttpEntity EMPTY_ENTITY = new HttpEntity(EMPTY_HEADERS);
+
+}
 ```
 
 ##更多
