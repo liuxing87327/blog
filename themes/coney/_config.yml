@@ -93,20 +93,21 @@ jiathis:
   id: 2038458           ## e.g. 1501277 your jiathis ID.
   tsina: 1809603852     ## e.g. 1664838973 Your weibo id,It will be used in share button.
 
-####CNZZ统计
+#### CNZZ统计
 cnzz_analytics:
   enable: true
 
-####Baidu Analytics
+#### 百度统计
 baidu_analytics:
   enable: true
   id: e0270889606c4b2a973302b9badc62a1 # your baidu analytics id
 
-####Baidu Share
+#### 百度分享
 baidu_share:
   enable: true
   color: 4
 
+#### 主题设置
 theme_color:
     background: "#dddddd"
     font: "#565656"
@@ -114,7 +115,7 @@ theme_color:
     theme: '#ea6753'
     footer: "#ddd"
 
-####谷歌GA统计
+#### 谷歌GA统计
 google_analytics:
   enable: false
   id:   ## e.g. UA-55273525-1 your google analytics ID.
@@ -122,23 +123,23 @@ google_analytics:
 ## You MUST upgrade to Universal Analytics first!
 ## https://developers.google.com/analytics/devguides/collection/upgrade/?hl=zh_CN
 
-####背景音乐
+#### 背景音乐
 background_music:
   enable: false
   src:
 
-####百度站内搜索
+#### 百度站内搜索
 baidu_search:
   enable: false
   id:
   site: http://zhannei.baidu.com/cse/search  #your can change your site instead the default site
 
-####谷歌搜索 site方式
+#### 谷歌搜索 site方式
 google_search:
   enable: false
   site: http://www.google.com/search
 
-####谷歌站内搜索
+#### 谷歌站内搜索
 google_cse:
   enable: true
   cx: 004448258768383282576:0vooskxgngw  ## e.g. 010584917530731754670:91c2z8qybp0 your Custom Search ID
