@@ -90,4 +90,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: 重试机制的分析
+  message: shadowsocks科学上网.md
