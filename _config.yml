@@ -90,4 +90,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: Tomcat-Jdbc-Pool参数说明.md
+  message: RabbitMQ使用（一）安装篇
