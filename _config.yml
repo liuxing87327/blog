@@ -90,4 +90,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: RabbitMQ使用（一）安装篇
+  message: String、StringBuffer、StringBuilder的区别
