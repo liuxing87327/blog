@@ -583,3 +583,25 @@ StringBuffer耗时: 3683921
 
 
 小数据量用哪种都无所谓，String甚至更快，数据量大的时候就不要用String了，本来还要测试500000+，但是太慢了，就没测试了
+
+##延伸知识
+分析上面东东时，使用的一些还未深入测试的知识点
+
+###查看java字节码
+1.javac –verbose查看运行类加载的jar
+    
+    javac –verbose Test.java
+2.javap查看字节码
+    
+    javap –c Test
+    javap –verbose Test
+    
+
+查看字节码对比String的字面量形式和new创建的差异，待定！
+    
+###查看jvm的图形工具
+常用的jvm图形分析工具，待定！
+
+
+
+    
