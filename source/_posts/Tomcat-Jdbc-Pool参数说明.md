@@ -89,21 +89,18 @@ Tomcat jdbc-pool 新增属性
 
 ```xml
 <bean id="parentDataSource" abstract="true" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close"
-          p:maxWait="5000"
+          p:maxWait="10000"
           p:removeAbandoned="true"
           p:removeAbandonedTimeout="180"
           p:connectionProperties="clientEncoding=UTF-8"
           p:validationQuery="SELECT 1"
-          p:validationQueryTimeout="1"
           p:validationInterval="30000"
           p:testOnBorrow="false"
           p:testOnReturn="false"
           p:testWhileIdle="true"
           p:timeBetweenEvictionRunsMillis="10000"
           p:minEvictableIdleTimeMillis="60000"
-          p:numTestsPerEvictionRun="20"
           p:logAbandoned="false"
-          p:jmxEnabled="true"
           p:defaultAutoCommit="true"/>
           
 <bean id="dataSource" parent="parentDataSource"
