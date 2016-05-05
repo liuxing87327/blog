@@ -110,6 +110,6 @@ Tomcat jdbc-pool 新增属性
           p:password="test"
           p:initialSize="100"
           p:maxActive="500"
-          p:maxIdle="100"
-          p:minIdle="50" />
+          p:maxIdle="500"
+          p:minIdle="100" />
 ```
