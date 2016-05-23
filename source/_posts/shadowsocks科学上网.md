@@ -64,11 +64,11 @@ http 192.168.3.51 8123
 ![添加规则列表](/images/ss/06.png)
 
 
-规则列表地址:`http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt`
+规则列表地址:~~`http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt`~~
 
 注意：上面的规则地址已过期
 
-*[new]*规则列表地址:`https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt`
+新规则列表地址:`https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt`
 
 ![添加规则列表](/images/ss/07.png)
 
