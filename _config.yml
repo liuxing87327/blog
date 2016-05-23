@@ -90,4 +90,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: String、StringBuffer、StringBuilder的区别_延伸知识
+  message: ss上网更新规则列表地址
