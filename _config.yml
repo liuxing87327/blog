@@ -90,4 +90,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: ss上网更新规则列表地址
+  message: 使用SDKMAN管理开发环境.md
