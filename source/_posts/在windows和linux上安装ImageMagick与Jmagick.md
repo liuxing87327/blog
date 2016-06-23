@@ -5,14 +5,14 @@ tags: [jmagick, linux, windows]
 
 ---
 
-##Linux安装Jmagick
-###下载JMagick和ImageMagick
+## Linux安装Jmagick
+### 下载JMagick和ImageMagick
 http://downloads.jmagick.org/6.4.0/jmagick-6.4.0-src.tar.gz  
 http://downloads.jmagick.org/6.4.0/ImageMagick-6.4.0-0.tar.gz  
 
 文件存到一个指定目录，如/usr/local/ImageMagick，该目录就是后续的安装目录
 
-###安装依赖包
+### 安装依赖包
 yum install libpng 
 yum install libpng-devel 
 yum install libjpeg 
@@ -26,7 +26,7 @@ yum install zlib(可选)
 是zlib通用压缩库，图形格式png使用zlib中的deflate压缩算法
 
 
-###安装ImageMagick
+### 安装ImageMagick
 
 `cd /usr/local/ImageMagick`
  
@@ -50,7 +50,7 @@ configure参数说明：
 --disable-openmp 禁用多线程，使用多线程性能并没有提高，但CPU占用达到了100%，所以禁用了。(可选)
 
 
-###安装（需要几分钟时间）
+### 安装（需要几分钟时间）
 `make && make install`
 
  
@@ -84,7 +84,7 @@ configure参数说明：
 `Copyright: Copyright (C) 1999-2008 ImageMagick Studio LLC`
 
 
-###安装并配置JMagick
+### 安装并配置JMagick
 
 
 1.解压
@@ -129,7 +129,7 @@ configure参数说明：
 `$JAVA_HOME=/usr/java/jdk1.7.0/`
 `$JRE_HOME=$JAVA_HOME/jre`
 
-##windows安装Jmagick 
+## windows安装Jmagick 
 
 以ImageMagick-6.3.9-0-Q16-windows-dll.exe安装到windows为例，
 
@@ -152,6 +152,6 @@ static {
 }
 ```
  
-##参考
+## 参考
 http://xlogin.blog.51cto.com/3473583/717321
 http://elf8848.iteye.com/blog/455675

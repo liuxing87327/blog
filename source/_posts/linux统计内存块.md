@@ -6,13 +6,13 @@ tags: [Java,linux]
 ---
 *纯粹备忘*
 
-##统计内存块
+## 统计内存块
 pmap -x $pid | awk '{ if($3 > 64000 && $3 < 65537) count++ } END { print count }’
 
-##导出内存块明细
+## 导出内存块明细
 pmap -x $pid > pmap.log
 
-##导出核心进程内存
+## 导出核心进程内存
 
 sudo gdb -q --pid=4990
  
@@ -35,7 +35,7 @@ gcore   [文件名]    #   产生core dump文件
 
 http://blog.chinaunix.net/uid-24020646-id-2419921.html
 
-##核心进程内存转换为heap dump
+## 核心进程内存转换为heap dump
 $JAVA_HOME/bin/jmap -dump:format=b,file=heap.hprof $JAVA_HOME/bin/java core.63278 
 /usr/java/jdk1.8.0_40/bin/jmap -dump:format=b,file=heap.hprof /usr/java/jdk1.8.0_40/bin/java memory.bin
 /usr/local/java/jdk1.8.0_20/bin/jmap -dump:format=b,file=heap.hprof /usr/local/java/jdk1.8.0_20/bin/java memory.bin
@@ -44,13 +44,13 @@ http://itindex.net/detail/50907-jmap-gcore-dump
 http://www.ibm.com/developerworks/cn/java/j-memoryanalyzer/
 
 
-##导入本地使用MAT工具分析
+## 导入本地使用MAT工具分析
 
-##使用libtcmalloc优化linux内存管理
+## 使用libtcmalloc优化linux内存管理
 gperftools+libunwind
 
 
-##查找文件
+## 查找文件
 
 find / -name "libunwind*” 
 

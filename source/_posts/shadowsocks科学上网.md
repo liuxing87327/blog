@@ -25,7 +25,7 @@ http://ss.fanque.wang/aff.php?aff=102
 https://portal.shadowsocks.com/aff.php?aff=2773
 
 
-##安装shadowsocks
+## 安装shadowsocks
 
 - 下载各平台的软件
     Windows 链接: http://pan.baidu.com/s/1mggYFNy 密码: w9qw
@@ -36,7 +36,7 @@ https://portal.shadowsocks.com/aff.php?aff=2773
     ![设置服务器信息](/images/ss/03.png)
     ![使用自动代理模式](/images/ss/02.png)
 
-##配置浏览器插件
+## 配置浏览器插件
 
 `以下教程的使用场景是chrome`
 
@@ -76,7 +76,7 @@ http 192.168.3.51 8123
 ![改为自动切换](/images/ss/08.png)
 
 
-##视频教程
+## 视频教程
 
 <object width='541' height='450'><param name='allowFullScreen' value='true'><param name='movie' value='http://i7.imgs.letv.com/player/swfPlayer.swf?autoPlay=0&id=23744815'/><embed src='http://i7.imgs.letv.com/player/swfPlayer.swf?autoPlay=0&id=23744815' width='541' height='450' allowFullScreen='true' type='application/x-shockwave-flash'/></object>
 

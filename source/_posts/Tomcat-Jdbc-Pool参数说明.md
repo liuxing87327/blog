@@ -5,7 +5,7 @@ tags: [连接池, 数据源, Jdbc]
 
 ---
 
-##介绍
+## 介绍
 Tomcat 在 7.0 以前的版本都是使用commons-dbcp做为连接池的实现，但是DBCP存在一些问题： 
 - DBCP 是单线程的，为了保证线程安全会锁整个连接池 
 - DBCP 性能不佳
@@ -25,7 +25,7 @@ Tomcat Jdbc Pool 近乎兼容 DBCP，性能更高
 - Tomcat Jdbc Pool 可在 Tomcat 中直接使用，也可以在独立的应用中使用。 
 
 
-##属性
+## 属性
 
 通用属性
 
@@ -85,7 +85,7 @@ Tomcat jdbc-pool 新增属性
 | logValidationErrors  |  (boolean)如果设置为true，将在验证相位时向日志文件写入错误。如果值为true，错误将被记录为SEVER。默认值是false以向后兼容。  |  false   |
 | propagateInterruptState  |  (boolean)设置这个属性为true，可以传播一个被中断的线程（还没有清除中断状态）的中断状态。默认值为false以向后兼容。  |   false  |
 
-##样例
+## 样例
 
 ```xml
 <bean id="parentDataSource" abstract="true" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close"

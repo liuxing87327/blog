@@ -7,7 +7,7 @@ tags: [linux,jdk]
 
 *记录一下*
 
-##安装
+## 安装
     
     cd /usr/local/java/ 
 
@@ -20,7 +20,7 @@ tags: [linux,jdk]
 可以修改文件夹读写、所有者、所属组
 http://www.tuicool.com/articles/b6bimiz
 
-##环境变量配置
+## 环境变量配置
 
 全局方式：
 

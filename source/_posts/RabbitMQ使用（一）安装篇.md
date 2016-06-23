@@ -5,7 +5,7 @@ tags: [RabbitMQ,MQ,消息队列]
 
 ---
 
-##安装erlang语言环境
+## 安装erlang语言环境
 
 安装依赖文件
 
@@ -36,7 +36,7 @@ cd otp_src_17.5
   10
   2> halt().
   
-##安装RabbitMQ 
+## 安装RabbitMQ 
 安装依赖
 > yum install xmlto
 
@@ -57,7 +57,7 @@ cd otp_src_17.5
   make
   make install TARGET_DIR=/opt/rabbitmq SBIN_DIR=/opt/rabbitmq/sbin MAN_DIR=/opt/rabbitmq/man DOC_INSTALL_DIR=/opt/rabbitmq/doc
   
-##使用
+## 使用
 启动MQ
 > rabbitmq-server -detached
 

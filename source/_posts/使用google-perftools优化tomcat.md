@@ -9,13 +9,13 @@ tags: [linux,perftools,tomcat]
 这个工具可让开发创建更强大的应用程序，特别是那些用C++模版开发的多线程应用程序，包括{% link TCMalloc http://www.oschina.net/p/tcmalloc %}, heap-checker, heap-profiler 和cpu-profiler。
 {% endblockquote %}
 
-##前置依赖
+## 前置依赖
 避免后续安装错误
 
     yum install -y gcc*
     yum install zlib* openssl* -y   
 
-##安装
+## 安装
 切换到工作目录
     
     cd /usr/local/src 或 ~/src
@@ -72,8 +72,8 @@ tomcat启动程序配置
     
     /usr/sbin/lsof -n | grep tcmalloc
 
-##参考
-###示例
+## 参考
+### 示例
 https://www.centos.bz/2012/01/google-perftools-speed-up-mysql-tcmalloc/
 http://blog.sina.com.cn/s/blog_8d05143b01012b87.html
 http://xkorey.iteye.com/blog/1648567
@@ -83,7 +83,7 @@ http://blog.csdn.net/wind19/article/details/10381291
 http://blog.chinaunix.net/uid-20687780-id-3029851.html
 http://blog.hackroad.com/operations-engineer/linux_server/1285.html
 
-###linux安装软件
+### linux安装软件
 http://www.cnblogs.com/chuncn/archive/2010/10/17/1853915.html
 
 http://www.educity.cn/wenda/353955.html

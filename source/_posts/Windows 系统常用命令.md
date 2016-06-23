@@ -7,7 +7,7 @@ tags: windows
 
 来自小辉哥
 
-##必备命令
+## 必备命令
 ```bash
 msinfo32,查看系统各种信息（环境变量、驱动等等）
 gpedit.msc 组策略编辑
@@ -33,7 +33,7 @@ fsutil fsinfo ntfsinfo c:
     查看文件系统信息，可知道IO block size,对程序优化也有借鉴作用。
 ```
 
-##其他常用命令
+## 其他常用命令
 ```bash
 sysdm.cpl：查看计算机属性
 dxdiag ： 查看DirectX相关信息,也可以查看内存

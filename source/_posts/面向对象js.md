@@ -6,11 +6,11 @@ tags: js
 ---
 一些很久前写的东西
 
-##面向对象的好处
+## 面向对象的好处
 代码以类为单元进行管理，把相关的数据和方法封装到类中。
 
 
-##js对象的本质
+## js对象的本质
 js的对象实质就是java的map， 它是key和value对的集合
 ```javascript
 var estate = {};
@@ -31,7 +31,7 @@ for(var propName in estate){
 ```
 
 
-##如何在js中写类（constructor/prototype pattern）
+## 如何在js中写类（constructor/prototype pattern）
 ```javascript
 //实例属性，实例化的每个对象都会有自己的一份拷贝
 function Person(name, age){               //构造函数：用来构造对象
@@ -53,7 +53,7 @@ alert(person.toString());
 ```
 
 
-##js中实现继承
+## js中实现继承
 ```javascript
 function Student(name, age, score){
      Person.call(this, name, age);               //借用父类的构造函数：目的是通过父类的构造函数， 把父类中定义的属性复制到子类对象上

@@ -17,7 +17,7 @@ tags: [RestTemplate, httpClient, Spring]
 
 [最新实例代码](#完整的实例代码) 更新于`2015-07-30`
 
-##xml配置的方式
+## xml配置的方式
 
 请查看RestTemplate源码了解细节，知其然知其所以然！
 
@@ -28,7 +28,7 @@ RestTemplate simpleRestTemplate
 @Autowired
 RestTemplate restTemplate
 
-###基于jdk的spring的RestTemplate
+### 基于jdk的spring的RestTemplate
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -63,7 +63,7 @@ RestTemplate restTemplate
 </beans>
 ```
 
-###使用Httpclient连接池的方式
+### 使用Httpclient连接池的方式
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -140,10 +140,10 @@ RestTemplate restTemplate
 </beans>
 ```
 
-##bean初始化+静态工具
+## bean初始化+静态工具
 
 **线程安全的单例（懒汉模式）**
-###基于jdk的spring的RestTemplate
+### 基于jdk的spring的RestTemplate
 
 ```java
 import org.slf4j.Logger;
@@ -208,7 +208,7 @@ public class SimpleRestClient {
 }
 ```
 
-###使用Httpclient连接池的方式
+### 使用Httpclient连接池的方式
 
 ```java
 
@@ -312,8 +312,8 @@ public class RestClient {
 }
 ```
 
-##使用样例
-###注意点
+## 使用样例
+### 注意点
 api里面可以做自动的参数匹配：
 如：http://you domainn name/test?empNo={empNo}，则下面方法的最后一个参数为数据匹配参数，会自动根据key进行查找，然后替换
 
@@ -321,7 +321,7 @@ API没有声明异常，注意进行异常处理
 
 更多使用语法请查看API文档
 
-###完整的实例代码
+### 完整的实例代码
 
 定义一个异常
 ```java
@@ -729,7 +729,7 @@ public class RestClient {
 }
 ```
 
-##更多
+## 更多
 
 **RestTemplate API说明和使用参考**
 

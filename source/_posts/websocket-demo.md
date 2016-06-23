@@ -6,7 +6,7 @@ tags: websocket
 ---
 记录下自己在用的websocket
 
-##介绍
+## 介绍
 
 现在很多网站为了实现即时通讯，所用的技术都是轮询(polling)。轮询是在特定的的时间间隔（如每1秒），
 由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。
@@ -17,9 +17,9 @@ tags: websocket
 
 在 WebSocket API，浏览器和服务器只需要要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。
     
-##运行环境：
+## 运行环境：
 
-###客户端
+### 客户端
 实现了websocket的浏览器
 
 |  |  |
@@ -31,9 +31,9 @@ tags: websocket
 | Safari | Supported in version 5+ |
 
 
-###服务端
+### 服务端
 
-####依赖
+#### 依赖
 Tomcat 7.0.47以上 + J2EE7
 
 ```xml
@@ -76,7 +76,7 @@ Tomcat的处理方式建议修改为NIO的方式，同时修改连接数到合�
 服务端不需要在web.xml中做额外的配置，Tomcat启动后就可以直接连接了。
 
 
-####实现
+#### 实现
 ```java
 import com.dooioo.websocket.utils.SessionUtils;
 import org.apache.commons.logging.Log;

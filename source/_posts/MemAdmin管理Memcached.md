@@ -21,20 +21,20 @@ tags: [Memcached,MemAdmin]
 {% endblockquote %}
 
 
-##查看依赖
+## 查看依赖
 
-###查看Apache版本
+### 查看Apache版本
     apachectl -v
 
-###查看PHP环境
+### 查看PHP环境
     php -v
 
 http://nan1hao.blog.51cto.com/753570/602610/
 
-##安装Apache和PHP（如果没有的话）
+## 安装Apache和PHP（如果没有的话）
 http://blog.csdn.net/czp11210/article/details/8750506
 
-##安装PHP的memcached扩展
+## 安装PHP的memcached扩展
     RPM –ivh php-pear-1.9.4-4.el6.noarch.rpm 
 
     RPM –ivh php-pecl-memcache-3.0.5-4.el6.x86_64.rpm
@@ -43,7 +43,7 @@ http://blog.csdn.net/czp11210/article/details/8750506
 
 
 
-##修改配置
+## 修改配置
 
 追加内容
 

@@ -11,7 +11,7 @@ tags: [String,StringBuffer,StringBuilder]
 今天写篇文字总结一下String、StringBuffer、StringBuilder的区别。
 本文不深入探讨jvm的机制（本人这块比较渣），有建议欢迎指点讨论学习，十分感谢！
 
-##前戏
+## 前戏
 
 - 被final修饰的类是不能被继承的，没有子类
 - 被final修饰的对象，其引用不能改变，但是对象中的属性值可以修改(String不行哦，编译都不通过)
@@ -20,11 +20,11 @@ tags: [String,StringBuffer,StringBuilder]
 
 
 
-##代码结构
+## 代码结构
 
-###String
+### String
 
-####源码分析
+#### 源码分析
 ```java
 public final class String implements java.io.Serializable, Comparable<String>, CharSequence {
     
@@ -77,9 +77,9 @@ value是一个被final修饰的数组对象，所以只能说他不能再引用�
 
 String的replace方法也并没有修改本身，而是重复创建了新的对象。
 
-####内存分配
+#### 内存分配
 
-#####常量池
+##### 常量池
 
 Java中字符串对象创建有两种形式，一种为字面量形式
 
@@ -132,8 +132,8 @@ JVM通过字符串常量池查找不到内容为lianjia的字符串对象存在�
 ![内存分配](/images/uml/Snip20160315_2.png)
 
 
-###StringBuffer、StringBuilder
-####源码分析
+### StringBuffer、StringBuilder
+#### 源码分析
 ![String、StringBuffer、StringBuilder类图对比](/images/uml/AbstractStringBuilder.png)
 
 `查看类图方法：选中包或类 - 右键 - Diagrams` 神马，你是eclipse，滚粗...
@@ -204,9 +204,9 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 
 StringBuffer、StringBuilder的功能大同小异，区别是StringBuffer的方法都加了同步关键字，以保证线程安全
 
-##线程安全
+## 线程安全
 
-###测试代码
+### 测试代码
 
 ```java
 import com.dooioo.commons.Randoms;
@@ -408,7 +408,7 @@ public class AbstractStringBuilderTest {
 
 ```
 
-###结果
+### 结果
 
 StringBuffer是线程安全的
 
@@ -472,7 +472,7 @@ Actual   :1450240
 
 ```
 
-##效率
+## 效率
 结合上面的分析，可以看出String使用”+“拼接字符，每次都会开辟新的内存空间，然后修改变量的指向，同时也会频繁触发GC。
 那么我们来测试一下具体性能差异有多少。
 
@@ -584,10 +584,10 @@ StringBuffer耗时: 3683921
 
 小数据量用哪种都无所谓，String甚至更快，数据量大的时候就不要用String了，本来还要测试500000+，但是太慢了，就没测试了
 
-##延伸知识
+## 延伸知识
 分析上面东东时，使用的一些还未深入测试的知识点
 
-###查看java字节码
+### 查看java字节码
 1.javac –verbose查看运行类加载的jar
     
     javac –verbose Test.java
@@ -599,7 +599,7 @@ StringBuffer耗时: 3683921
 
 查看字节码对比String的字面量形式和new创建的差异，待定！
     
-###查看jvm的图形工具
+### 查看jvm的图形工具
 常用的jvm图形分析工具，待定！
 
 

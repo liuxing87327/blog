@@ -16,7 +16,7 @@ APR有很多用途，包括访问高级IO功能(例如sendfile,epoll和OpenSSL)�
 在产品环境中，特别是直接使用Tomcat做WEB服务器的时候，应该使用Tomcat Native来提高其性能。
 {% endblockquote %}
 
-##安装apr
+## 安装apr
 yum install -y apr-devel openssl-devel gcc
 
 查看安装目录
@@ -26,7 +26,7 @@ rpm -ql openssl-devel
 apr目录：/usr/bin/apr-1-config
 
 
-##安装native
+## 安装native
 
 拷贝：tomcat/bin目录下的tomcat-native.tar.gz到某个位置
 解压：tar zxvf tomcat-native.tar.gz
@@ -41,7 +41,7 @@ apr目录：/usr/bin/apr-1-config
     --with-ssl=yes
     make & make install
 
-##配置tomcat
+## 配置tomcat
 
     vim catalina.sh
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/apr/lib
@@ -50,10 +50,10 @@ apr目录：/usr/bin/apr-1-config
     
     org.apache.coyote.http11.Http11AprProtocol
 
-##重启查看日志
+## 重启查看日志
 
 
-##参考
+## 参考
 
 http://www.cnblogs.com/kgdxpr/archive/2013/08/07/3243657.html
 

@@ -6,7 +6,7 @@ tags: pinyin4j
 ---
 直接代码
 
-##实现一
+## 实现一
 
 ```java
 import net.sourceforge.pinyin4j.PinyinHelper;
@@ -65,7 +65,7 @@ public class SpellHelper {
 }
 ```
 
-##实现二
+## 实现二
 
 ```java
 import java.util.ArrayList;

@@ -9,30 +9,30 @@ tags: [Spring,Cache]
 *Spring的抽象已经做得够好了，适合于大多数场景，非常复杂的就需要自己AOP实现了。*
 *Spring官网的文档挺不错的，但是对Cache这块的介绍不是很详细，结合网上大牛的博文，汇总下文。*
 
-##缓存概念
+## 缓存概念
 
 {% blockquote 缓存简介 http://jinnianshilongnian.iteye.com/blog/2001040 开涛的博客 %}
-###缓存简介
+### 缓存简介
 缓存，我的理解是：让数据更接近于使用者；工作机制是：先从缓存中读取数据，如果没有再从慢速设备上读取实际数据（数据也会存入缓存）；缓存什么：那些经常读取且不经常修改的数据/那些昂贵（CPU/IO）的且对于相同的请求有相同的计算结果的数据。如CPU--L1/L2--内存--磁盘就是一个典型的例子，CPU需要数据时先从L1/L2中读取，如果没有到内存中找，如果还没有会到磁盘上找。还有如用过Maven的朋友都应该知道，我们找依赖的时候，先从本机仓库找，再从本地服务器仓库找，最后到远程仓库服务器找；还有如京东的物流为什么那么快？他们在各个地都有分仓库，如果该仓库有货物那么送货的速度是非常快的。
  
-###缓存命中率
+### 缓存命中率
 即从缓存中读取数据的次数 与 总读取次数的比率，命中率越高越好：
 命中率 = 从缓存中读取次数 / (总读取次数[从缓存中读取次数 + 从慢速设备上读取的次数])
 Miss率 = 没有从缓存中读取的次数 / (总读取次数[从缓存中读取次数 + 从慢速设备上读取的次数])
  
 这是一个非常重要的监控指标，如果做缓存一定要健康这个指标来看缓存是否工作良好；
  
-###缓存策略
-####Eviction policy
+### 缓存策略
+#### Eviction policy
 移除策略，即如果缓存满了，从缓存中移除数据的策略；常见的有LFU、LRU、FIFO：
 - FIFO（First In First Out）：先进先出算法，即先放入缓存的先被移除；
 - LRU（Least Recently Used）：最久未使用算法，使用时间距离现在最久的那个被移除；
 - LFU（Least Frequently Used）：最近最少使用算法，一定时间段内使用次数（频率）最少的那个被移除；
  
-####TTL（Time To Live ）
+#### TTL（Time To Live ）
 存活期，即从缓存中创建时间点开始直到它到期的一个时间段（不管在这个时间段内有没有访问都将过期）
  
-####TTI（Time To Idle）
+#### TTI（Time To Idle）
 空闲期，即一个数据多久没被访问将从缓存中移除的时间。
  
  
@@ -52,7 +52,7 @@ Miss率 = 没有从缓存中读取的次数 / (总读取次数[从缓存中读�
 {% endblockquote %}
 
 
-##Spring Cache简介
+## Spring Cache简介
 {% blockquote Spring Cache 介绍 http://www.cnblogs.com/rollenholt/p/4202631.html Spring Cache 介绍 - Rollen Holt - 博客园 %}
 Spring3.1开始引入了激动人心的基于注释（annotation）的缓存（cache）技术，它本质上不是一个具体的缓存实现方案（例如EHCache 或者 OSCache），而是一个对缓存使用的抽象，通过在既有代码中添加少量它定义的各种 annotation，即能够达到缓存方法的返回对象的效果。
 
@@ -68,8 +68,8 @@ Spring的缓存技术还具备相当的灵活性，不仅能够使用 SpEL（Spr
 {% endblockquote %}
 
 
-##API介绍
-###Cache接口
+## API介绍
+### Cache接口
 
 `理解这个接口有助于我们实现自己的缓存管理器`
 
@@ -137,7 +137,7 @@ public interface Cache {
 }
 ```
 
-####默认实现
+#### 默认实现
 默认已经实现了几个常用的cache
 位于spring-context-x.RELEASE.jar和spring-context-support-x.RELEASE.jar的cache目录下
 - ConcurrentMapCache：基于java.util.concurrent.ConcurrentHashMap
@@ -145,7 +145,7 @@ public interface Cache {
 - EhCacheCache：基于Ehcache
 - JCacheCache：基于javax.cache.Cache（不常用）
 
-###CacheManager
+### CacheManager
 `用来管理多个cache`
 
 ```java
@@ -168,7 +168,7 @@ public interface CacheManager {
 }
 ```
 
-####默认实现
+#### 默认实现
 对应Cache接口的默认实现
 
 - ConcurrentMapCacheManager / ConcurrentMapCacheFactoryBean
@@ -177,7 +177,7 @@ public interface CacheManager {
 - JCacheCacheManager / JCacheManagerFactoryBean
 
 
-###CompositeCacheManager
+### CompositeCacheManager
 用于组合CacheManager，可以从多个CacheManager中轮询得到相应的Cache
 
 ```xml
@@ -193,21 +193,21 @@ public interface CacheManager {
 </bean>
 ```
 
-###事务
+### 事务
 除GuavaCacheManager外，其他Cache都支持Spring事务，如果注解方法出现事务回滚，对应缓存操作也会回滚
 
-###缓存策略
+### 缓存策略
 都是Cache自行维护，Spring只提供对外抽象API
 
-##Cache注解
+## Cache注解
 每个注解都有多个参数，这里不一一列出，建议进入源码查看注释
 
-###启用注解
+### 启用注解
 ```xml
 <cache:annotation-driven cache-manager="cacheManager"/>
 ```
 
-###@CachePut
+### @CachePut
 写数据
 
 ```java
@@ -218,7 +218,7 @@ public List<PublicAutoAddPotentialJob.AutoAddPotentialNotice> put(int userCode, 
 }
 ```
 
-###@CacheEvict
+### @CacheEvict
 失效数据
 
 ```java
@@ -229,7 +229,7 @@ public void remove(int userCode) {
 
 ```
 
-###@Cacheable
+### @Cacheable
 这个用的比较多
 用在查询方法上，先从缓存中读取，如果没有再调用方法获取数据，然后把数据添加到缓存中
 
@@ -240,7 +240,7 @@ public KyArea findById(String areaId) {
 }
 ```
 
-###运行流程
+### 运行流程
 
 1.  首先执行@CacheEvict（如果beforeInvocation=true且condition 通过），如果allEntries=true，则清空所有
 2.  接着收集@Cacheable（如果condition 通过，且key对应的数据不在缓存），放入cachePutRequests（也就是说如果cachePutRequests为空，则数据在缓存中）
@@ -250,7 +250,7 @@ public KyArea findById(String areaId) {
 6.  执行cachePutRequests，将数据写入缓存（unless为空或者unless解析结果为false）；
 7.  执行@CacheEvict（如果beforeInvocation=false 且 condition 通过），如果allEntries=true，则清空所有
 
-###SpEL上下文数据
+### SpEL上下文数据
 
 在使用时，#root.methodName 等同于 methodName
 
@@ -265,10 +265,10 @@ public KyArea findById(String areaId) {
 |   argument name  |   执行上下文   |   当前被调用的方法的参数，如findById(Long id)，我们可以通过#id拿到参数   |   #user.id   |
 |   result  |   执行上下文   |   方法执行后的返回值（仅当方法执行之后的判断有效，如‘unless’，'cache evict'的beforeInvocation=false）   |   #result   |
 
-###条件缓存
+### 条件缓存
 主要是在注解内用condition和unless的表达式分别对参数和返回结果进行筛选后缓存
 
-###@Caching
+### @Caching
 多个缓存注解组合使用
 
 ```java
@@ -284,7 +284,7 @@ public User save(User user) {
 }
 ```
 
-###自定义缓存注解
+### 自定义缓存注解
 把一些特殊场景的注解包装到一个独立的注解中，比如@Caching组合使用的注解
 
 ```java
@@ -310,9 +310,9 @@ public User save(User user) {
 }
 ```
 
-##示例
-###基于ConcurrentMapCache
-####自定义CacheManager
+## 示例
+### 基于ConcurrentMapCache
+#### 自定义CacheManager
 我需要使用有容量限制和缓存失效时间策略的Cache，默认的ConcurrentMapCacheManager没法满足
 通过实现CacheManager接口定制出自己的CacheManager。
 还是拷贝ConcurrentMapCacheManager，使用Guava的Cache做底层容器，因为Guava的Cache容器可以设置缓存策略
@@ -373,7 +373,7 @@ public class ConcurrentMapCacheManager implements CacheManager {
 }
 ```
 
-####初始化
+#### 初始化
 xml风格
 
 ```xml
@@ -390,7 +390,7 @@ xml风格
 </bean>
 ```
 
-####使用
+#### 使用
 
 ```java
 @Cacheable(value = "kyMemoryCache", key="targetClass + '.' + methodName")
@@ -399,12 +399,12 @@ public Map<String, String> queryMobiles(){
 }
 ```
 
-###使用Memcached
+### 使用Memcached
 
 一般常用的缓存当属memcached了，这个就需要自己实现CacheManager和Cache
 注意我实现的Cache里面有做一些定制化操作，比如对key的处理
 
-####创建MemcachedCache
+#### 创建MemcachedCache
 
 ```java
 import com.dooioo.common.jstl.DyFunctions;
@@ -598,7 +598,7 @@ public class MemcachedCache implements Cache {
 }
 ```
 
-####创建MemcachedCacheManager
+#### 创建MemcachedCacheManager
 
 继承AbstractCacheManager
 
@@ -632,7 +632,7 @@ public class MemcachedCacheManager extends AbstractCacheManager {
 }
 ```
 
-####初始化
+#### 初始化
 ```xml
 <!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，指定一个默认的Manager，否则需要在注解使用时指定Manager -->
 <cache:annotation-driven cache-manager="cacheManager"/>
@@ -649,7 +649,7 @@ public class MemcachedCacheManager extends AbstractCacheManager {
 ```
 
 
-####使用
+#### 使用
 ```java
 @Cacheable(value = "kyAreaCache", key="targetClass + '.' + methodName + '.' + #areaId")
 public KyArea findById(String areaId) {
@@ -658,7 +658,7 @@ public KyArea findById(String areaId) {
 ```
 
 
-##更多
+## 更多
 
 更多复杂的使用场景和注解语法请自行谷歌！
 

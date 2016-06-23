@@ -5,7 +5,7 @@ tags: [地图, 坐标运算, 距离]
 
 ---
 
-##使用Java进行计算
+## 使用Java进行计算
 
 ```java
 /**
@@ -108,7 +108,7 @@ public class DistanceUtil {
 }
 ```
 
-##使用SqlServer函数计算
+## 使用SqlServer函数计算
 
 其他数据库版本请找到相应的函数替换后移植
 

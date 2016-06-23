@@ -11,7 +11,7 @@ http://liuxing.info/2015/02/09/websocket-demo
 相关依赖请参考上文，spring需要4.x
 
 
-##websocket处理器
+## websocket处理器
 
 ```java
 import org.apache.commons.collections.MapUtils;
@@ -101,7 +101,7 @@ public class TelWebSocketHandler extends TextWebSocketHandler {
 }
 ```
 
-##websocket连接的拦截器
+## websocket连接的拦截器
 ```java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -166,7 +166,7 @@ public class TelWebSocketHandshakeInterceptor extends HttpSessionHandshakeInterc
 }
 ```
 
-##session工具类
+## session工具类
 ```java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -277,7 +277,7 @@ public class TelSocketSessionUtils {
 }
 ```
 
-##初始化配置
+## 初始化配置
 ```xml
 <!--websocket配置-->
 <bean id="telWebSocketHandler" class="包.websocket.handler.TelWebSocketHandler"/>
