@@ -90,4 +90,4 @@ deploy:
   type: git
   repo: https://github.com/liuxing87327/liuxing87327.github.io.git
   branch: master
-  message: 使用SDKMAN管理开发环境.md
+  message: Spring AMQP中文文档.md

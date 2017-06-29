@@ -367,11 +367,6 @@ http://docs.oracle.com/javase/tutorial/collections/streams/reduction.html
 
 <script type="text/javascript" src="/js/pdfobject.js"></script>
 
-<!--<style>-->
-<!--.pdfobject-container { height: 600px;}-->
-<!--.pdfobject { border: 1px solid #666; }-->
-<!--</style>-->
-
 <script type="text/javascript" async>
     var options = {
         height: "700px",
