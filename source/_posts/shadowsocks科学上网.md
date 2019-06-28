@@ -16,21 +16,20 @@ tags: [linux,ss,shadowsocks]
 
 ---
 
-先购买ss套餐，推荐下面两个
+先购买ss套餐，推荐下面这个
 
-只是看看网页,推荐**按需订购套餐**,支持 电脑/手机/平板 等多客户端同时在线
-http://ss.fanque.wang/aff.php?aff=102
+https://www.gogoweixin.com/aff.php?aff=125
 
-这个是按年付费,只能单平台同时在线,限制比较多,但是不限流量
-https://portal.shadowsocks.com/aff.php?aff=2773
+进入 服务 > 试用&购买 > 优质线路套餐 > 全能套餐15G流量包
+
+50元15G，用完为止，不限时
 
 
 ## 安装shadowsocks
 
 - 下载各平台的软件
-    Windows 链接: http://pan.baidu.com/s/1mggYFNy 密码: w9qw
-    MAC 链接: http://pan.baidu.com/s/1o6EK2Oq 密码: 4erq
-    Android 链接: http://pan.baidu.com/s/1dDflgBZ 密码: 75wt
+    Windows / MAC / Android
+    链接:https://pan.baidu.com/s/1yFnuC_tg0NlqVgLTsYFsTw  密码:0vk7
 - 运行软件,设置账号信息(以`MAC`平台为例)
     ![打开设置](/images/ss/01.png)
     ![设置服务器信息](/images/ss/03.png)
@@ -41,7 +40,7 @@ https://portal.shadowsocks.com/aff.php?aff=2773
 `以下教程的使用场景是chrome`
 
 **离线插件地址**
-链接: http://pan.baidu.com/s/1o607yjg 密码: wxrt
+链接:https://pan.baidu.com/s/1yFnuC_tg0NlqVgLTsYFsTw  密码:0vk7
 
 **安装到chrome**
 
@@ -75,9 +74,5 @@ http 192.168.3.51 8123
 
 ![改为自动切换](/images/ss/08.png)
 
-
-## 视频教程
-
-<object width='541' height='450'><param name='allowFullScreen' value='true'><param name='movie' value='http://i7.imgs.letv.com/player/swfPlayer.swf?autoPlay=0&id=23744815'/><embed src='http://i7.imgs.letv.com/player/swfPlayer.swf?autoPlay=0&id=23744815' width='541' height='450' allowFullScreen='true' type='application/x-shockwave-flash'/></object>
 
 有问题欢迎留言交流!!!

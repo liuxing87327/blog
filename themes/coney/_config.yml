@@ -50,8 +50,8 @@ ShowCustomFont: true
 
 #### Toc 目录配置
 toc:
-  article: true   ## 是不是在文章中显示目录.如果某一篇文章中你不想显示侧边栏，可以在正文之前 `front-matter`中添加属性`toc: false`.
-  aside: true     ## 是不是在侧边栏中显示目录.
+  article: false   ## 是不是在文章中显示目录.如果某一篇文章中你不想显示侧边栏，可以在正文之前 `front-matter`中添加属性`toc: false`.
+  aside: false     ## 是不是在侧边栏中显示目录.
 
 ##默认关闭，如果你使用Hexo经常发表Gallery类型的文章，那么请设置为true（同时需要复制fancybox.js到你的博客目录下scripts文件夹中）。
 
